@@ -1,0 +1,40 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.6.33723.286
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "AirBnb", ".", "{CBBF2AA8-5205-42D0-882F-7080474940CA}"
+	ProjectSection(WebsiteProperties) = preProject
+		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.8"
+		Debug.AspNetCompiler.VirtualPath = "/localhost_62950"
+		Debug.AspNetCompiler.PhysicalPath = "..\..\..\Desktop\AirBnb\"
+		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_62950\"
+		Debug.AspNetCompiler.Updateable = "true"
+		Debug.AspNetCompiler.ForceOverwrite = "true"
+		Debug.AspNetCompiler.FixedNames = "false"
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.VirtualPath = "/localhost_62950"
+		Release.AspNetCompiler.PhysicalPath = "..\..\..\Desktop\AirBnb\"
+		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_62950\"
+		Release.AspNetCompiler.Updateable = "true"
+		Release.AspNetCompiler.ForceOverwrite = "true"
+		Release.AspNetCompiler.FixedNames = "false"
+		Release.AspNetCompiler.Debug = "False"
+		VWDPort = "62950"
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{CBBF2AA8-5205-42D0-882F-7080474940CA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CBBF2AA8-5205-42D0-882F-7080474940CA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {D15A65ED-308C-46B2-A38C-18DE48DD45F9}
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">SalmanFinishA</string>
+    <string name="guess_my_number"><u>Guess The Number</u></string>
+    <string name="menu"><u>Menu</u></string>
+    <string name="image_view_description" />
+    <string name="take_picture" />
+    <string name="take_a_picture_or_video"><u>Take a Picture or Video</u></string>
+    <string name="RockPaperScissors"><u> Rock  Paper  Scissors </u></string>
+    <string name="Map"><u>Map</u></string>
+
+</resources>

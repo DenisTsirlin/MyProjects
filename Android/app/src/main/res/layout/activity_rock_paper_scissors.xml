@@ -1,0 +1,62 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:weightSum="10"
+    android:padding="16dp"
+    android:background="@drawable/rock_paper_scissors">
+
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="79dp"
+        android:fontFamily="@font/rubik_mono_one"
+        android:text="@string/RockPaperScissors"
+        android:textColor="@color/black"
+        android:textSize="15sp" />
+
+    <Space
+        android:layout_width="381dp"
+        android:layout_height="238dp"
+        android:layout_weight="0.2">
+
+    </Space>
+
+    <Button
+        android:id="@+id/rock_button"
+        android:layout_width="191dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:backgroundTint="#323333"
+        android:text="✊🏼" />
+
+    <Button
+        android:id="@+id/paper_button"
+        android:layout_width="191dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="📄"
+        android:backgroundTint="#323333"/>
+
+    <Button
+        android:id="@+id/scissors_button"
+        android:layout_width="191dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="✂️"
+        android:backgroundTint="#323333"/>
+
+    <TextView
+        android:id="@+id/result_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="22sp"
+        android:layout_marginTop="24dp"/>
+
+
+
+
+
+</LinearLayout>

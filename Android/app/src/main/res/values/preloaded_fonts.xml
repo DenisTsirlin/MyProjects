@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <array name="preloaded_fonts" translatable="false">
+        <item>@font/</item>
+        <item>@font/aguafina_script</item>
+        <item>@font/akaya_telivigala</item>
+        <item>@font/alfa_slab_one</item>
+        <item>@font/bilbo_swash_caps</item>
+        <item>@font/holtwood_one_sc</item>
+        <item>@font/homemade_apple</item>
+        <item>@font/monoton</item>
+        <item>@font/rubik_mono_one</item>
+        <item>@font/seaweed_script</item>
+    </array>
+</resources>

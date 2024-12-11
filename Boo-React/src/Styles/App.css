@@ -1,0 +1,188 @@
+/*
+דף התחברות
+*/
+.fullPageBackground {
+  background-image: url('https://i.pinimg.com/236x/9a/93/a9/9a93a9bb602470330bff49bd5baa5858.jpg');
+  background-repeat: no-repeat;
+   background-size: 100% 100%;
+  font-family: 'Numans', sans-serif;
+  margin: 0; 
+  padding: 0;
+  height: 120vh;
+  width: 215.8vh;
+}
+
+
+.BodyLogin {
+  height: 100%; 
+  
+}
+
+.container{
+height: 100%;
+align-content: center;
+}
+
+.card{
+height: 370px;
+text-align: center;
+width: 400px;
+margin-left: 28em;
+background-color: rgba(0,0,0,0.5) ;
+}
+
+.social_icon span{
+font-size: 60px;
+margin-left: 10px;
+}
+
+.social_icon span:hover{
+color: white;
+cursor: pointer;
+}
+
+.card-header h3{
+color: white;
+}
+
+.social_icon{
+position: absolute;
+right: 20px;
+top: -45px;
+}
+
+.input-group-prepend span{
+width: 50px;
+background-color: #FFC312;
+color: black;
+border:0 !important;
+}
+
+input:focus{
+outline: 0 0 0 0  !important;
+box-shadow: 0 0 0 0 !important;
+
+}
+
+.login_btn{
+color: black;
+background-color: #79fbff;
+width: 100px;
+}
+
+.login_btn:hover{
+color: black;
+background-color: white;
+}
+
+.links{
+color: white;
+}
+
+.links a{
+margin-left: 4px;
+}
+.form-group{
+  margin-top: 10px;
+}
+.form-group2{
+  margin-top: 3.5em;
+  
+}
+
+/*
+דף הרשמה
+*/
+
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.registration-container {
+  width: 400px;
+  padding: 40px;
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+}
+
+.registration-container h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.form-label {
+  font-weight: bold;
+}
+
+.form-control {
+  border-radius: 5px;
+}
+
+.btn-primary {
+  width: 100%;
+  border-radius: 5px;
+  background-color: #007bff;
+}
+
+.btn-primary:hover {
+  background-color: #0056b3;
+}
+
+
+#boo{
+  .bungee-spice-regular {
+    font-family: "Bungee Spice", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+  }
+  
+}
+
+.bsb-tpl-bg-platinum {
+background-image:url('https://i.pinimg.com/236x/73/aa/bc/73aabcd614f9d5c31477a674e268afd5.jpg')!important ;
+background-repeat: no-repeat !important;
+background-size: 100% 100% !important;
+background-position: center;
+filter: brightness(45%);
+}
+
+
+
+
+/* התאמה לנייד*/
+
+@media only screen and (max-width: 500px) {
+  .fullPageBackground {
+    /* Adjust styles for mobile here */
+    height: 185vh;
+    width: 100vh;
+  }
+
+  .card {
+    /* Adjust styles for mobile here */
+    width: 20em;
+    margin-right: 5px;
+  }
+}
+
+
+@media only screen and (min-width: 900px) {
+  /* קוד עבור מסך רחב יותר, כמו דסקטופ */
+
+  .fullPageBackground {
+    height: 115vh; /* הפחתת הגובה לגובה מסך רגיל */
+    width: 100vw; /* הפחתת הרוחב לרוחב מסך רגיל */
+  }
+
+  .card {
+    width: 400px; 
+    
+  }
+
+  
+}

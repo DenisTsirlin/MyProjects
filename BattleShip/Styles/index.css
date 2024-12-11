@@ -1,0 +1,200 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  display: grid;
+ grid-template-areas:'h1'
+ 'toGo';
+  align-items: center;
+  justify-content: center;
+ background-image: url(/images/Photos\ World\ Of\ Warship\ Ships\ Games\ Army.png);
+ background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+
+.game-wrapper{
+  grid-area: game-wrapper;
+}
+
+.score-table{
+grid-area:score-table ;
+margin-bottom: 100px;
+}
+
+#toGo{
+  grid-area:toGo;
+}
+h1 {
+  grid-column: 1 / 3;
+  text-align: center;
+  margin-bottom: 20px;
+  font-family: Arial, sans-serif;
+  color: #faf3f3;
+}
+
+form {
+  grid-column: 1;
+  background-color: rgb(0,0,0,0.5);
+  padding: 10px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgb(0, 0, 0, 0.5);
+}
+
+.score-table {
+  grid-column: 2;
+  margin-bottom: 200px;
+  width: fit-content;
+}
+
+.score-table table {
+  width: 100%;
+}
+
+.score-table th,
+.score-table td {
+  padding: 8px;
+  text-align: center;
+  font-size: 14px;
+}
+
+.score-table th {
+  background-color: #333;
+  color: #fff;
+}
+
+.score-table tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+td {
+  background-color: #f2f2f2;
+  cursor: pointer;
+  width: 20px;
+  height: 20px;
+}
+
+.gray-board td {
+  background-color: #ccc;
+  cursor: pointer;
+}
+
+
+table {
+  grid-column: 2;
+  width: 100%;
+  border-collapse: collapse;
+  background-color: #ffffff3a;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border-collapse: collapse;
+}
+
+
+
+select,
+input[type="number"] {
+  width: 30%;
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-family: Arial, sans-serif;
+}
+
+button {
+  display: block;
+  margin-top: 10px;
+  padding: 10px;
+  border: none;
+  border-radius: 4px;
+  background-color: #b83014;
+  color: #fff;
+  font-family: Arial, sans-serif;
+  cursor: pointer;
+
+}
+
+/* Add the following CSS rule */
+
+#animation {
+  width: 0px;
+  /* Initial width of the image */
+  transition: width 1s;
+  /* Transition property for smooth animation */
+  opacity: 1;
+}
+
+@keyframes growAnimation {
+  0% {
+    width: 0px;
+    /* Initial width of the image */
+    opacity: 1;
+  }
+
+  100% {
+    width: 200px;
+    opacity: 0;
+    /* Final width of the image */
+  }
+}
+
+
+
+.enlarged {
+  animation: growAnimation 2s;
+}
+
+
+.board {
+  display: grid;
+  grid-template-columns: repeat(var(--board-size), 1fr);
+  grid-gap: 5px;
+  width: calc(40px * var(--board-size));
+}
+
+.slot {
+  
+  width: 30px;
+  height: 30px;
+  background-color: rgb(105, 106, 107);
+  border: 1px solid rgb(22, 3, 3);
+  cursor: pointer;
+  position: relative;
+  text-align: center;
+  font-weight: bold;
+  font-size: 24px;
+  color: #fff;
+}
+
+
+
+
+
+table {
+  border-collapse: collapse;
+  margin-top: 10em;
+}
+
+th,
+td {
+  padding: 5px;
+  border: 1px solid black;
+}
+.none{
+  display: none;
+}
+
+.game-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; /* Adjust the height as needed */
+  margin-top: -30px;
+}
+
+#board-size1{
+  color: #ccc;
+}

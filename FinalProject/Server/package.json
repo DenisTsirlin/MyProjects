@@ -1,0 +1,31 @@
+{
+  "name": "ts-node-starter-kit-with-mongo",
+  "version": "1.0.0",
+  "description": "a starter kit for node with full typescript support and bare mongodb. It includes a basic setup for TypeScript, Nodemon, and a tsconfig.json file.",
+  "main": "./dist/main.js",
+  "scripts": {
+    "start": "node ./dist/main.js",
+    "prestart": "npm run build",
+    "build": "npx tsc",
+    "dev": "nodemon ./src/main.ts"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/bcrypt": "^5.0.2",
+    "@types/express": "^4.17.21",
+    "@types/node": "^20.14.13",
+    "nodemon": "^3.1.4",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.5.2"
+  },
+  "dependencies": {
+    "bcrypt": "^5.1.1",
+    "cloudinary": "^2.5.1",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "mongodb": "^6.8.0",
+    "mongoose": "^8.5.2"
+  }
+}

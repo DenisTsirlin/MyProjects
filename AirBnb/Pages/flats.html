@@ -1,0 +1,492 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title> Flats </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+            integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+            crossorigin="anonymous"></script>
+    <script src="../JS/ajaxCalls.js"></script>
+
+    <link href="../CSS/StyleSheet.css" rel="stylesheet" />
+
+    <script>
+        $(document).ready(function () {
+            let port = "7087";
+            server = `https://localhost:${port}/`;
+
+            $("#Fform").submit(submitFlat);
+            $(document).on("click", "#logoutBTN", LogOut);
+            $(document).on("click", "#deleteU", DeleteUser);
+
+
+            getFlats();
+
+
+        })
+        function getFlats() {
+            api = server + "api/Flat";
+            ajaxCall("GET", api, "", getSCB, getECB);
+
+        }
+
+        // success callback function
+        function getSCB(FlatsList) {
+            if (sessionStorage.UsersSession != null) {
+                ph = "";
+                for (var i = 0; i < FlatsList.length; i++) {
+
+                    ph += "<div class='card col-3'>";
+                    ph += "<h3>Flat Details</h3>";
+                    ph += "<div class='card-content'>";
+                    ph += "<p> Id: " + FlatsList[i].id + "</p>";
+                    ph += "<p> City " + FlatsList[i].city + "</p>";
+                    ph += "<p> Address: " + FlatsList[i].address + "</p>";
+                    ph += "<p> Price: " + FlatsList[i].price + "</p>";
+                    ph += "<p> Number of rooms " + FlatsList[i].numberOfRoom + "</p>";
+                    ph += "<button id='orderBTN' onclick='FlatSelection(" + FlatsList[i].id + ")'>Order</button>";
+                    ph += "</div>";
+                    ph += "</div>";
+
+                }
+                document.getElementById("ph").innerHTML = ph;
+            }
+
+        }
+        function FlatSelection(chosenFlatId) {
+            // Save flatId in sessionStorage
+            sessionStorage.setItem('chosenFlatId', chosenFlatId);
+
+            window.location.href = 'vacations.html';
+
+        }
+
+        // error callback function
+        function getECB(err) {
+            console.log(err);
+        }
+
+        //Create a new flat
+        function submitFlat() {
+            if (sessionStorage.UsersSession) {
+                AllFlats = {
+                    Id: parseInt($("#IdTB").val()),
+                    City: $("#CityTB").val(),
+                    Address: $("#AdTB").val(),
+                    NumberOfRoom: parseInt($("#RoomTB").val()),
+                    Price: parseFloat($("#PriceTB").val())
+
+                }
+
+                api = server + "api/Flat";
+
+                ajaxCall("POST", api, JSON.stringify(AllFlats), postSCB, postECB);
+
+            }
+            else {
+                alert("אתה חייב קודם להיכנס למערכת")
+            }
+            //The form is always refreash but with return false its not refreash
+            return false;
+        }
+
+        // success callback function
+        function postSCB(res) {
+            if (res == false) {
+                alert("עשית משהו לא נכון");
+            }
+            console.log(res);
+            getFlats();
+            alert("דירה נכנסה למערכת");
+        }
+
+        // error callback function
+        function postECB(err) {
+
+            console.log(err);
+        }
+
+        //For present the mail before send whatsapp massege
+        function EmailRead() {
+
+            const userFromSession1 = sessionStorage.getItem('UsersSession');
+            var user2 = JSON.parse(userFromSession1);
+            var userId1 = user2.email;
+            document.getElementById("emailInput").value = userId1;
+        }
+
+
+        function loginUser() {
+            let email = document.getElementById("regUsername").value;
+            let firstName = "";
+            let lastName = "";
+            let password = document.getElementById("regPassword").value;
+            let hashedPassword = StringSha256Hash(password);
+            var userData = { FirstName: firstName, LastName: lastName, Email: email, Password: hashedPassword };
+            api = server + "api/Users/Login";
+            ajaxCall("POST", api, JSON.stringify(userData), LogSCB, logECB); //allow login exist acoount with ALLAJAX as POST and read all the "AllData" with connect them to the swager
+
+        }
+
+        function LogSCB(res1) {
+
+            if (document.getElementById("regUsername").value == "" || document.getElementById("regPassword").value == "") {
+                alert("משהו חסר");
+            }
+            else {
+                sessionStorage.setItem("UsersSession", JSON.stringify(res1));
+                if (JSON.parse(sessionStorage.UsersSession).firstName == null) {
+                    alert("לא קיים במערכת");
+                }
+                else {
+                    alert("נכנסת בהצלחה למערכת");
+                    getFlats();
+                    $('.registration').removeAttr('hidden');
+                    document.getElementById('signin1').style.display = 'none';
+                    document.getElementById('reg1').style.display = 'none';
+                    document.getElementById('userLogin').style.display = 'none';
+                    EmailRead();
+
+
+                }
+
+            }
+        }
+
+
+        function logECB(err1) {
+            alert("המערכת לא מצאה אותך");
+        }
+
+
+        function StringSha256Hash(text) {
+            return text === null || text === undefined || text === '' ?
+                '' :
+                CryptoJS.SHA256(text).toString(CryptoJS.enc.Hex);
+        }
+
+
+        function registerUsers() {
+            const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+            const passwordRegex = /^(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()-+=])[A-Za-z\d!@#$%^&*()-+=]{7,12}$/;
+            const nameRegex = /^[a-zA-Z]+$/;
+
+            if (!emailRegex.test($("#newMail").val()) || !passwordRegex.test($("#newPassword").val())) {
+                alert("מייל או סיסמא לא תקינים");
+            } else {
+                if ($("#Fname").val() == "" || $("#famName").val() == "" || $("#newPassword").val() == "" || !nameRegex.test($("#Fname").val()) || !nameRegex.test($("#famName").val())) {
+                    alert(" פספסת כמה נתונים או פורמט לא תקין");
+                } else {
+                    const hashedPassword = StringSha256Hash($("#newPassword").val()); // Hash the password
+                    AllReg = {
+                        FirstName: ($("#Fname").val()),
+                        LastName: ($("#famName").val()),
+                        Email: ($("#newMail").val()),
+                        Password: hashedPassword // Use the hashed password
+                    }
+
+                    api = server + "api/Users/Register";
+                    ajaxCall("POST", api, JSON.stringify(AllReg), RegSCB, RegECB);
+                }
+            }
+        }
+
+        function RegSCB(res) {
+
+            sessionStorage.setItem("RegStorage", res);
+            alert("נכנסת בהצלחה למאגר");
+            document.getElementById('userRegist').style.display = 'none';
+
+        }
+        function RegECB(err) {
+            alert("המערכת לא מצאה אותך");
+        }
+        function UpdateMe() {
+            var email1 = document.getElementById("regUsername").value;
+            var firstName1 = document.getElementById("MyName").value;
+            var lastName1 = document.getElementById("MyfamilyName").value;
+            var password1 = document.getElementById("Mypassword").value;
+            var hashedPassword = StringSha256Hash(password1);
+            var userUpdate = { FirstName: firstName1, LastName: lastName1, Email: email1, Password: hashedPassword };
+            const nameRegex = /^[a-zA-Z]+$/;
+            const passwordRegex = /^(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()-+=])[A-Za-z\d!@#$%^&*()-+=]{7,12}$/;
+            api = server + "api/Users/{Email}";
+            if (firstName1 == "" || lastName1 == "" || password1 == "") {
+                alert("תאים ריקים");
+            }
+            else if (!nameRegex.test(firstName1) || !nameRegex.test(lastName1) || !passwordRegex.test(password1)) {
+                alert("לא בפורמט");
+            }
+            else {
+
+                ajaxCall("PUT", api, JSON.stringify(userUpdate), UpSCB, UpECB);
+            }
+        }
+        function UpSCB() {
+
+            alert("פרטיך עודכנו במערכת");
+            document.getElementById('userUpdate').style.display = 'none';
+
+        }
+
+        function UpECB(err) {
+            alert("משהו לא נכנס כשורה");
+        }
+
+        function LogOut() {
+            window.location.href = "flats.html";
+            sessionStorage.clear();
+        }
+
+        function DeleteUser() {
+            var email = JSON.parse(sessionStorage.getItem("UsersSession")).email;
+            var api = server + "api/Users/" + encodeURIComponent(email);
+
+            fetch(api, {
+                method: 'DELETE'
+            })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return; // אם אין שגיאה אחרת
+                })
+
+                .then(data => { // המשתמש נמחק בהצלחה
+                    alert("המשתמש נמחק בהצלחה");
+                    window.location.href = "flats.html";
+                    // Clear sessionStorage
+                    sessionStorage.clear();
+                })
+                .catch(error => {
+                    // Handle errors
+                    console.error('Error deleting user:', error);
+                });
+        }
+
+
+        function SendWhatsapp() {
+
+            var phoneNumber = "+972526606803";
+            var email = $("#emailInput").val();
+            var subject = document.getElementById('subjectInput').value;
+            var message = document.getElementById('messageInput').value;
+
+            var url = "https://wa.me/" + phoneNumber + "?text=" +
+                "*Email:* " + email + "%0a" +
+                "*Subject:* " + subject + "%0a" +
+                "*Message:* " + message + "%0a%0a";
+            window.open(url, '_blank').focus();
+        }
+    </script>
+
+
+</head>
+
+<body>
+
+    <div class="container-fluid">
+        <h1 class="bigT">Flats</h1>
+        <div class="row">
+            <div class=" col-sm-4 col-md-4 col-lg-4">
+                <p id="welcomes"></p>
+                <input type="button" id="signin1" class="BTN3 btn btn-info btn-lg registration" value="הרשמה" onclick="document.getElementById('userRegist').style.display='block'" />
+                <input type="button" id="reg1" class="BTN3 btn btn-info btn-lg registration" value="התחברות" onclick="document.getElementById('userLogin').style.display='block'" />
+                <input type="button" class="BTN3 btn btn-info btn-lg registration" value="עדכון פרטים אישיים" onclick="document.getElementById('userUpdate').style.display='block'" hidden />
+                <input type="button" id="deleteU" class="BTN3 btn btn-info btn-lg registration" value="מחיקת משתמש" onclick="document.getElementById('userDelete').style.display='block'" hidden />
+                <input type="button" id="sendWhatsapp" class="BTN3 btn btn-info btn-lg registration" value="שליחת הודעת ווצאפ" onclick="document.getElementById('sendWhatsappModal').style.display='block'" hidden />
+                <input type="button" id="logoutBTN" class="BTN3 btn btn-info btn-lg" value="התנתקות" />
+            </div>
+            <!--login-->
+            <div id="userLogin" class="modal">
+                <span onclick="document.getElementById('userLogin').style.display='none'"
+                      class="close" title="Close Modal">&times;</span>
+
+                <!-- Modal Content -->
+                <form class="modal-content " id="loginForm">
+
+
+                    <div class="container">
+                        <label for="uname"><b>Email</b></label>
+                        <input type="text" id="regUsername" placeholder="Enter Username" name="uname" required>
+
+                        <label for="psw"><b>Password</b></label>
+                        <input type="password" id="regPassword" placeholder="Enter Password" name="psw" required>
+
+
+                        <label>
+                            <input type="checkbox" checked="checked" name="remember"> Remember me
+                        </label>
+                    </div>
+
+                    <div class="clearfix">
+                        <button type="button" onclick="document.getElementById('userLogin').style.display='none'" class="cancelbtn">Cancel</button>
+                        <button id="LogBTN" onclick="loginUser()" type="button">Login</button>
+
+
+                    </div>
+
+                </form>
+            </div>
+            <!--end-->
+            <!--register-->
+            <div id="userRegist" class="modal">
+
+                <form id="regForm" class="modal-content">
+                    <div class="container">
+                        <h1>
+                            Sign Up
+                        </h1>
+                        <span onclick="document.getElementById('userRegist').style.display='none'" class="close" title="Close Modal">x</span>
+
+                        <label for="email"><b>Email</b></label>
+                        <input type="text" placeholder="Enter Email" id="newMail" name="email" required>
+
+                        <label for="FirstName"><b>First Name</b></label>
+                        <input type="text" placeholder="Enter First Name" id="Fname" name="firstName" required>
+
+
+                        <label for="FamilytName"><b>Family Name</b></label>
+                        <input type="text" placeholder="Enter Family Name" id="famName" name="familyName" required>
+
+                        <label for="psw"><b>Password</b></label>
+                        <input type="password" placeholder="Enter Password" id="newPassword" name="psw" required>
+
+
+                        <input type="checkbox" checked="checked" name="remember" style="margin-bottom:15px"> Remember me
+
+
+
+                        <div class="clearfix">
+                            <button type="button" onclick="registerUsers()" id="signUp" class="signup">Sign Up</button>
+                        </div>
+                        <button type="button" onclick="document.getElementById('userRegist').style.display='none'" class="cancelbtn">Cancel</button>
+
+                    </div>
+                </form>
+            </div>
+            <!--end-->
+            <!--Update-->
+            <div id="userUpdate" class="modal">
+                <span onclick="document.getElementById('userUpdate').style.display='none'" class="close" title="Close Modal">x</span>
+                <form id="regForm" class="modal-content">
+                    <div class="container">
+                        <h1>
+                            Update
+                        </h1>
+
+
+                        <label for="email"><b>Email</b></label>
+                        <input type="text" placeholder="Enter Email" id="mail" name="email" disabled>
+
+                        <label for="FirstName"><b>First Name</b></label>
+                        <input type="text" placeholder="Enter First Name" id="MyName" name="firstName">
+
+
+                        <label for="LastName"><b>Family Name</b></label>
+                        <input type="text" placeholder="Enter Family Name" id="MyfamilyName" name="familyName">
+
+                        <label for="psw"><b>Password</b></label>
+                        <input type="password" placeholder="Enter Password" id="Mypassword" name="psw">
+
+
+                        <div class="clearfix">
+                            <button type="button" onclick="UpdateMe()" id="update">Update</button>
+                        </div>
+                        <button type="button" onclick="document.getElementById('userUpdate').style.display='none'" class="cancelbtn">Cancel</button>
+
+                    </div>
+                </form>
+            </div>
+            <!--end-->
+        </div>
+        <div class="container">
+            <h1 class="secondT">Write your flat</h1>
+            <form id="Fform">
+                <table>
+                    <tr>
+                        <td>Id</td>
+                        <td><input type="number" id="IdTB" required /></td>
+                    </tr>
+                    <tr>
+                        <td>City</td>
+                        <td>
+                            <div class="form-group">
+                                <input type="text" list="cities" class="form-control" id="CityTB" required />
+                                <datalist id="cities">
+                                    <option value="Beer Sheva">Beer Sheva</option>
+                                    <option value="Nahariya">Nahariya</option>
+                                    <option value="Hadera">Hadera</option>
+                                    <option value="Haifa">Haifa</option>
+                                    <option value="Tiberias">Tiberias</option>
+                                    <option value="Pardes Hanna">Pardes Hanna</option>
+                                    <option value="Netanya">Netanya</option>
+                                    <option value="Herzliya">Herzliya</option>
+                                    <option value="Tel Aviv">Tel Aviv</option>
+                                    <option value="Jerusalem">Jerusalem</option>
+                                    <option value="Kfar Sabba">Kfar Sabba</option>
+                                    <option value="Mitzpe Ramon">Mitzpe Ramon</option>
+                                    <option value="Eilat">Eilat</option>
+                                </datalist>
+                            </div>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Address</td>
+                        <td><input type="text" id="AdTB" maxlength="25" required /></td>
+                    </tr>
+                    <tr>
+                        <td>Number of rooms</td>
+                        <td><input type="number" id="RoomTB" min="1" max="8" required /></td>
+                    </tr>
+                    <tr>
+                        <td>Price</td>
+                        <td><input type="number" id="PriceTB" required /></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="submit" id="submitBTN" value="submit me" />
+
+                        </td>
+                    </tr>
+
+                </table>
+
+            </form>
+        </div>
+
+        <div class="container">
+            <h1 class="secondT">All flats</h1>
+
+            <div class="row" id="ph">
+            </div>
+        </div>
+
+        <div id="sendWhatsappModal" style="display:none" class="modal">
+            <form id="regForm" class="modal-content">
+                <div class="container">
+                    <label for="email">Email</label>
+                    <input type="text" id="emailInput" readonly />
+                    <label for="subject">Subject</label>
+                    <input type="text" id="subjectInput" />
+                    <label for="message">Message</label>
+                    <textarea id="messageInput"></textarea>
+                    <button type="button" onclick="SendWhatsapp()">Send WhatsApp Message</button>
+                    <button type="button" onclick="document.getElementById('sendWhatsappModal').style.display='none'" class="cancelbtn">Cancel</button>
+
+                </div>
+            </form>
+        </div>
+
+    </div>
+
+</body>
+</html>

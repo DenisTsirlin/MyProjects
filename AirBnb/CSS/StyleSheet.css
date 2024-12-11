@@ -1,0 +1,122 @@
+﻿body {
+    font-family:'Arial Rounded MT';
+    background-color:antiquewhite;
+
+}
+.bigT{
+    font-size:100px;
+    color:saddlebrown;
+    text-align:center;
+    background-color:gainsboro;
+}
+.bigT2 {
+    font-size: 100px;
+    color: darkred;
+    text-align: center;
+    background-color: gainsboro;
+}
+.secondT{
+    font-size:50px;
+    text-align:center;
+
+}
+.card{
+    border-collapse:collapse;
+    border:solid;
+    margin-left:3px;
+    margin-top:5px;
+}
+.registration {
+    width: 150px;
+    background-color: saddlebrown;
+}
+#RoomTB{
+    width:100%;
+}
+#PriceTB{
+    width:100%;
+}
+#IdTB {
+    width: 100%;
+}
+#orderBTN {
+    background-color: burlywood;
+}
+#CityTB {
+    margin-top: 5px;
+    box-sizing: border-box;
+}
+#VacationBTN {
+    background-color: indianred;
+    stroke-dasharray: inherit;
+    border-radius: 5px;
+    height:70px;
+    width:500px;
+   margin-left:50%;
+}
+#submitBTN {
+    stroke-dasharray: inherit;
+    border-radius: 5px;
+    background-color: darkkhaki;
+}
+#generateReportBtn {
+    stroke-dasharray: inherit;
+    border-radius: 5px;
+    background-color: indianred;
+    width:300px;
+    height:50px;
+}
+#monthDropdown {
+    stroke-dasharray: inherit;
+    border-radius: 5px;
+    background-color: #ccc;
+    width: 200px;
+    height: 50px;
+}
+/*modal login style*/
+#loginForm, #regForm {
+    max-width: 300px;
+    padding: 10px;
+    background-color: gainsboro;
+}
+
+input[type=text], input[type=password] {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}
+#logoutBTN {
+    background-color: #0B3133;
+}
+.BTN3 {
+    width: 200px;
+}
+/* Set a style for all buttons */
+#LogBTN, .cancelbtn {
+    background-color: #99672E;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+}
+#signUp {
+    width: 100%;
+    background-color: #99672E;
+    font-size:20px;
+}
+
+button:hover {
+    opacity: 0.8;
+}
+
+/* Extra styles for the cancel button */
+.cancelbtn {
+    width: auto;
+    padding: 10px 18px;
+    background-color: #0B3133;
+}

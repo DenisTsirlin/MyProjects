@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:weightSum="10"
+    android:background="@drawable/guessmynumber"
+    tools:context=".GuessTheNumber">
+
+    <TextView
+
+        android:id="@+id/guessNumber"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.6"
+        android:gravity="center"
+        android:text="@string/guess_my_number"
+        android:textSize="25sp"
+        android:textStyle="bold"
+        android:textColor="#FFFFFF"
+        >
+
+
+    </TextView>
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.5"
+        >
+    </Space>
+
+
+    <TextView
+        android:id="@+id/tvInstruction"
+        android:layout_width="409dp"
+        android:layout_height="0dp"
+        android:layout_gravity="center"
+        android:layout_marginLeft="26dp"
+        android:layout_weight="0.6"
+        android:text="Easy level: Guess the number between 1-10"
+        android:textSize="17.5sp"
+        android:textColor="#FFFFFF"/>
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.5"
+        >
+    </Space>
+
+    <EditText
+        android:id="@+id/etGuess"
+        android:layout_width="match_parent"
+        android:layout_height="10dp"
+        android:layout_margin="16dp"
+        android:layout_weight="0.6"
+        android:hint="Enter your guess"
+        android:inputType="number"
+        android:textColorHint="#CCCCCC"
+        android:textColor="#FFFFFF"
+        />
+
+    <Button
+        android:id="@+id/btnCheck"
+        android:layout_width="273dp"
+        android:layout_height="0dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="8dp"
+        android:layout_weight="0.6"
+        android:text="Check"
+        android:textColor="@color/black"
+        android:backgroundTint="#a8d6e5"
+        />
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="5.4"
+        >
+    </Space>
+
+    <Button
+        android:id="@+id/btnBackMenu"
+        android:layout_width="124dp"
+        android:layout_height="19dp"
+        android:layout_weight="0.6"
+        android:backgroundTint="#a8d6e5"
+        android:text="👈🏼"
+        android:textColor="@color/black"
+        android:textSize="30sp">
+
+    </Button>
+
+
+
+</LinearLayout>

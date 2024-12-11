@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Battleship Game</title>
+  <script type="" src="/Scripts/function.js"></script>
+  <script src="Scripts/index.js" defer></script>
+  <link rel="stylesheet" href="/Styles/index.css">
+</head>
+
+<body>
+  <h1 >Battleship Game</h1>
+
+  <div id="toGo">
+  <form id="game-form">
+    <label style="padding-left:-4px" id="board-size1" for="board-size">Board Size :</label>
+    <input type="number" id="board-size" min="10" max="15" required>
+    <br>
+    <label id="board-size1" for="ship-2">Ship Size 2:</label>
+    <input type="number" id="ship-2" min="1" max="10" required>
+    <br>
+    <label id="board-size1" for="ship-3">Ship Size 3:</label>
+    <input type="number" id="ship-3" min="1" max="10" required>
+    <br>
+    <label id="board-size1" for="ship-4">Ship Size 4:</label>
+    <input type="number" id="ship-4" min="1" max="10" required>
+    <br>
+    <label id="board-size1" for="ship-5">Ship Size 5:</label>
+    <input type="number" id="ship-5" min="1" max="10" required>
+    <br>
+    <button id="board-size1" type="submit">Start Game</button>
+  </form>
+</div>
+  <br>
+  <br>
+  <div class="score-table" style="display: none;">
+    <table>
+      <caption style="color: aliceblue;">Score Table</caption>
+      <thead>
+        <tr>
+          <th>Ship Size</th>
+          <th>Hits</th>
+          <th>Sunks</th>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td id="score-2">0</td>
+          <td id="sunk-2">0</td>
+        </tr>
+        <tr>
+          <td>3</td>
+          <td id="score-3">0</td>
+          <td id="sunk-3">0</td>
+        </tr>
+        <tr>
+          <td>4</td>
+          <td id="score-4">0</td>
+          <td id="sunk-4">0</td>
+        </tr>
+        <tr>
+          <td>5</td>
+          <td id="score-5">0</td>
+          <td id="sunk-5">0</td>
+        </tr>
+    </table>
+  </div>
+  <div class="game-wrapper">
+    <div id="game-container" class="game-container"></div>
+  </div>
+  <audio id="audio" src="sounds/explosion.wav"></audio>
+  <div id="output">
+    <img src="images/OIP.png" id="animation" alt="Animated Image">
+  </div>
+</body>
+
+</html>

@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F4F4F4"
+    android:orientation="vertical"
+    android:weightSum="10"
+    android:padding="20dp"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/holtwood_one_sc"
+        android:text="@string/Map"
+        android:layout_marginLeft="128dp"
+        android:textSize="35sp" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="230dp"
+        android:layout_height="235dp"
+        android:layout_marginLeft="70dp"
+        app:srcCompat="@drawable/map2" />
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="60sp"
+        android:layout_weight="0.5"
+        >
+    </Space>
+
+    <EditText
+        android:id="@+id/source"
+        android:hint="Enter source location"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <EditText
+        android:id="@+id/destination"
+        android:hint="Enter destination location"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="10sp"
+        android:layout_weight="0.5"
+        >
+    </Space>
+    <Button
+        android:id="@+id/btnSubmit"
+        android:text="open Navigation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="115dp"
+        android:backgroundTint="#47A470"
+
+        />
+
+
+</LinearLayout>
