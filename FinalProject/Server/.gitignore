@@ -1,1 +1,2 @@
-.env
+# CONNECTION_STRING=mongodb+srv://denistsirlin:2PPHLSFdpujc52xh@mycare.i9qq6yd.mongodb.net/?retryWrites=true&w=majority&appName=MyCare
+# DB_NAME=MyCare
