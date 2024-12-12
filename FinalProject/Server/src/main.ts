@@ -2,6 +2,7 @@ import 'dotenv/config'; // apply env vars
 import express from 'express';
 import VehicleRouter from './vehicle/vehicle.routes';
 import CustomerRouter from './Customers/customer.routes';
+require('dotenv').config();
 
 
 //config
